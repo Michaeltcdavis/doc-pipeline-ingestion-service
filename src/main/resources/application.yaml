@@ -1,6 +1,11 @@
 spring:
   application:
     name: ingestion-service
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
 
 document:
   upload:
@@ -8,3 +13,7 @@ document:
       - application/pdf
       - application/msword
       - application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+kafka:
+  topic:
+    document-ingestion: validated-documents
