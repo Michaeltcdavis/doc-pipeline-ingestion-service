@@ -9,6 +9,7 @@ spring:
 
 document:
   upload:
+    max-file-size: 1048576 # 1MB in bytes
     allowed-types:
       - application/pdf
       - application/msword

@@ -27,6 +27,9 @@ public class DocumentController {
         if (!uploadProperties.allowedTypes().contains(file.getContentType())) {
             return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE).body("Unsupported file type: " + file.getContentType());
         }
+        if (file.getSize() > uploadProperties.maxFileSize()) {
+            return ResponseEntity.status(HttpStatus.CONTENT_TOO_LARGE).body("File exceeds maximum file size of " + uploadProperties.maxFileSize() + " bytes");
+        }
         try {
         documentService.ingest(file);
         return ResponseEntity.accepted().body("Document received: " + file.getOriginalFilename());
